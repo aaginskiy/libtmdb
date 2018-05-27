@@ -1,0 +1,12 @@
+{
+  "/movie": {
+    "action": "GET",
+    "url": "/movie/:id?",
+    "required": ["id"]
+  },
+  "/search/movie": {
+    "action": "GET",
+    "url": "/search/movie?query=:query",
+    "required": ["query"]
+  }
+}
