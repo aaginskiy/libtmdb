@@ -3,4 +3,4 @@ node_js:
   - "node"
   - 9
   - 8
-script: yarn test:coveralls
+script: yarn ci
