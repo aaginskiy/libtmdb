@@ -49,7 +49,7 @@ describe('\'MovieDB\' API', () => {
     })
 
     it('should reject with res of the return if status_code is an error', () => {
-      sinon.stub(request, 'get').yields(new Error('Some error'), {status_code: 2, status_message: 'Invalid service: this service does not exist.'}, JSON.stringify({}))
+      sinon.stub(request, 'get').yields(null, {status_code: 2, status_message: 'Invalid service: this service does not exist.'}, JSON.stringify({}))
       return expect(MovieDB.movie({ id: 550 }))
         .to.be.rejectedWith('Invalid service: this service does not exist.')
     })

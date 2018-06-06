@@ -45,19 +45,11 @@ module.exports = class MovieDB {
       }
 
       request.get(config, (err, res, body) => {
-        var json = null
+        if (err) return reject(new Error(err))
 
-        if (!err && res.statusCode === 200 && !res.status_code) {
-          json = JSON.parse(body)
+        if (res.status_code && res.status_code !== 1) return reject(new Error(res.status_message))
 
-          return resolve(json)
-        }
-
-        if (res.status_code && res.status_code !== 1) {
-          reject(new Error(res.status_message))
-        }
-
-        reject(new Error(err))
+        return resolve(JSON.parse(body))
       })
     })
   }
