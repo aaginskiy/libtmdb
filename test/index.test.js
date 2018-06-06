@@ -59,5 +59,11 @@ describe('\'MovieDB\' API', () => {
       return expect(MovieDB.movie({ id: 550 }))
         .to.be.rejectedWith('Error: Some error')
     })
+
+    it('should reject with error for badly formatted JSON', () => {
+      sinon.stub(request, 'get').yields(null, {status_code: 1}, '{')
+      return expect(MovieDB.movie({ id: 550 }))
+        .to.be.rejectedWith('Unexpected end of JSON input')
+    })
   })
 })

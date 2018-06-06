@@ -49,7 +49,11 @@ module.exports = class MovieDB {
 
         if (res.status_code && res.status_code !== 1) return reject(new Error(res.status_message))
 
-        return resolve(JSON.parse(body))
+        try {
+          return resolve(JSON.parse(body))
+        } catch (e) {
+          return reject(e)
+        }
       })
     })
   }
